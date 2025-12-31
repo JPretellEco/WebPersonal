@@ -1,97 +1,188 @@
-    <!DOCTYPE html>
-    <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>JPretellDS - Portfolio</title>
-        <link rel="stylesheet" href="styles.css">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos | Jeffersson Pretell</title>
+    
+    <link rel="shortcut icon" href="assets/img/profile_photo.png" type="image/png">
 
-        <!-- Agregamos tsparticles -->
-        <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
 
-    </head>
-    <body>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+</head>
 
-        <!-- Contenedor de partículas -->
-        <div id="particles-js"></div>
+<body>
 
-    <header>
-        <h1>JPretellDS</h1>
+    <div id="particles-js"></div>
+
+    <header class="main-header">
+        <div class="logo-container">
+            <h1>JPretell<span class="highlight-text">DS</span></h1>
+        </div>
         <nav>
-            <ul>
-                <li><a href="./index.html">INICIO</a></li>
-                <li><a href="./certificaciones.html">CERTIFICADOS</a></li>
-                <li><a href="./project.html">PROYECTOS</a></li>
-                <li><a href="./blog.html">BLOG</a></li>
+            <ul class="nav-links">
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="certificaciones.html">CERTIFICADOS</a></li>
+                <li><a href="project.html" class="active">PROYECTOS</a></li>
+                <li><a href="blog.html">BLOG</a></li>
             </ul>
-            <a href="https://www.linkedin.com/in/jefferssonpretell" target="_blank">
-                <img src='./linkedinlogo 1.png' href="www.linkedin.com/in/jefferssonpretell"></img>
-            </a>
         </nav>
+        <div class="social-header">
+            <a href="https://www.linkedin.com/in/jefferssonpretell" target="_blank">
+                <ion-icon name="logo-linkedin" size="large"></ion-icon>
+            </a>
+        </div>
     </header>     
+
+    <main class="page-content">
         <section id="proyectos">
-            <h2>Mis Proyectos</h2>
+            <div class="section-header">
+                <h2>Portafolio de Proyectos</h2>
+                <p>Aplicaciones prácticas de Machine Learning, Automatización y Análisis Económico.</p>
+            </div>
+
             <div class="proyectos-grid">
-                <div class="proyecto">
-                    <h3>Detección de rostros con OPEN Cv</h3>
-                    <video controls>
-                        <source src="./WhatsApp Video 2025-05-08 at 3.48.05 AM.mp4" type="video/mp4">
-                        Tu navegador no soporta el elemento de video.
-                    </video>
-                    <p>Script básico en Python para detectar rostros con modelos ya entrenados listos para detección de rostros de forma práctica.</p>
-                    <a href="https://github.com/tuusuario/chatbot-ventas" target="_blank">Ver proyecto</a>
-                </div>
                 
-                <div class="proyecto">
-                    <h3>Dashboard de Indicadores Económicos</h3>
-                    <p>Visualiza datos económicos del Perú con gráficos interactivos usando R Shiny.</p>
-                    <a href="https://tuweb.com/dashboard-economico" target="_blank">Ver proyecto</a>
-                </div>
-                <div class="proyecto">
-                    <h3>Dashboard de Indicadores Económicos</h3>
-                    <p>Visualiza datos económicos del Perú con gráficos interactivos usando R Shiny.</p>
-                    <a href="https://tuweb.com/dashboard-economico" target="_blank">Ver proyecto</a>
-                </div>
-                <div class="proyecto">
-                    <h3>Dashboard de Indicadores Económicos</h3>
-                    <p>Visualiza datos económicos del Perú con gráficos interactivos usando R Shiny.</p>
-                    <a href="https://tuweb.com/dashboard-economico" target="_blank">Ver proyecto</a>
-                </div>
-                <div class="proyecto">
-                    <h3>Dashboard de Indicadores Económicos</h3>
-                    <p>Visualiza datos económicos del Perú con gráficos interactivos usando R Shiny.</p>
-                    <a href="https://tuweb.com/dashboard-economico" target="_blank">Ver proyecto</a>
-                </div>
-                <div class="proyecto">
-                    <h3>Dashboard de Indicadores Económicos</h3>
-                    <p>Visualiza datos económicos del Perú con gráficos interactivos usando R Shiny.</p>
-                    <img src="./aifun.png" alt="Imagen del proyecto"></img>
-                    <a href="https://tuweb.com/dashboard-economico" target="_blank">Ver proyecto</a>
-                </div>
-                <div class="proyecto">
-                    <h3>Dashboard de Indicadores Económicos</h3>
-                    <p>Visualiza datos económicos del Perú con gráficos interactivos usando R Shiny.</p>
-                    <a href="https://tuweb.com/dashboard-economico" target="_blank">Ver proyecto</a>
-                </div>
-                <div class="proyecto">
-                    <h3>Dashboard de Indicadores Económicos</h3>
-                    <p>Visualiza datos económicos del Perú con gráficos interactivos usando R Shiny.</p>
-                    <a href="https://tuweb.com/dashboard-economico" target="_blank">Ver proyecto</a>
-                </div>
-                <div class="proyecto">
-                    <h3>Dashboard de Indicadores Económicos</h3>
-                    <p>Visualiza datos económicos del Perú con gráficos interactivos usando R Shiny.</p>
-                    <a href="https://tuweb.com/dashboard-economico" target="_blank">Ver proyecto</a>
-                </div>
-                <!-- Agrega más proyectos aquí -->
+                <article class="project-card" onclick="openModal('modal_scraping')">
+                    <div class="card-image">
+                        <img src="assets/img/projects/comparador.png" alt="Web Scraping Retail">
+                        <div class="overlay-icon"><ion-icon name="add-circle-outline"></ion-icon></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="tags">
+                            <span class="tag">#Python</span>
+                            <span class="tag">#Selenium</span>
+                        </div>
+                        <h3>Web Scraping Retail</h3>
+                        <p>Comparador de precios para combatir la asimetría de información en el mercado.</p>
+                    </div>
+                </article>
+
+                <article class="project-card" onclick="openModal('modal_face')">
+                    <div class="card-image">
+                        <img src="assets/img/projects/opencv.jpeg" alt="OpenCV Face Detection"> 
+                        <div class="overlay-icon"><ion-icon name="play-circle-outline"></ion-icon></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="tags">
+                            <span class="tag">#ComputerVision</span>
+                            <span class="tag">#OpenCV</span>
+                        </div>
+                        <h3>Detección de Rostros</h3>
+                        <p>Script de visión artificial para detección facial en tiempo real.</p>
+                    </div>
+                </article>
+
+                <article class="project-card" onclick="openModal('modal_churn')">
+                    <div class="card-image">
+                        <img src="assets/img/projects/fuga_clientes.png" alt="Churn Prediction">
+                        <div class="overlay-icon"><ion-icon name="stats-chart-outline"></ion-icon></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="tags">
+                            <span class="tag">#MachineLearning</span>
+                            <span class="tag">#Streamlit</span>
+                        </div>
+                        <h3>Predicción Fuga de Clientes</h3>
+                        <p>Modelo predictivo con PCA y Regresión Logística desplegado en web.</p>
+                    </div>
+                </article>
+
+                <article class="project-card" onclick="openModal('modal_whatsapp')">
+                    <div class="card-image">
+                        <img src="assets/img/projects/whatsapp_automation.png" alt="WhatsApp Bot">
+                        <div class="overlay-icon"><ion-icon name="logo-whatsapp"></ion-icon></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="tags">
+                            <span class="tag">#Automation</span>
+                            <span class="tag">#Python</span>
+                        </div>
+                        <h3>WhatsApp Marketing Bot</h3>
+                        <p>Automatización de envío masivo de mensajes para campañas.</p>
+                    </div>
+                </article>
+
+                 <article class="project-card" onclick="openModal('modal_fraud')">
+                    <div class="card-image">
+                        <img src="assets/img/projects/estafas.jpg" alt="Fraud Detection"> <div class="overlay-icon"><ion-icon name="shield-checkmark-outline"></ion-icon></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="tags">
+                            <span class="tag">#Scikit-learn</span>
+                            <span class="tag">#Finanzas</span>
+                        </div>
+                        <h3>Detección de Fraude</h3>
+                        <p>Clasificación supervisada para identificar transacciones anómalas.</p>
+                    </div>
+                </article>
+
             </div>
         </section>
-        
-        <!-- Script para cargar las partículas -->
-        <script src="particles.js"></script>
+    </main>
 
-    </body>
+    <div id="modal_scraping" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal_scraping')">×</span>
+            <div class="modal-body">
+                <img src="assets/img/projects/comparador.png" class="modal-img-top">
+                <h2>Web Scraping de Precios Retail</h2>
+                <p><strong>Problema:</strong> Asimetría de información en precios retail.</p>
+                <p><strong>Solución:</strong> Extracción automatizada de precios de múltiples e-commerce para centralizar la data y permitir al consumidor comparar.</p>
+                <div class="tech-stack-modal">
+                    <span>Python</span><span>Flask</span><span>BeautifulSoup</span>
+                </div>
+                <a href="https://github.com/JPretellEco" target="_blank" class="modal-btn">Ver Código en GitHub</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal_face" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal_face')">×</span>
+            <div class="modal-body">
+                <video controls width="100%">
+                    <source src="assets/video/face_detection.mp4" type="video/mp4">
+                    Tu navegador no soporta video.
+                </video>
+                <h2>Detección de Rostros con OpenCV</h2>
+                <p>Implementación de algoritmos Haar Cascades para la identificación rápida de rostros en flujos de video.</p>
+                <div class="tech-stack-modal">
+                    <span>Python</span><span>OpenCV</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal_churn" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal_churn')">×</span>
+            <div class="modal-body">
+                <iframe src="https://appfugaclientespca-c245gkntftkxmcbgcp8xqq.streamlit.app/?embed=true" height="400px" width="100%" style="border:none;"></iframe>
+                <h2>App de Fuga de Clientes</h2>
+                <p>Utilización de PCA para reducción de dimensionalidad y predicción de probabilidad de abandono.</p>
+                <a href="https://appfugaclientespca-c245gkntftkxmcbgcp8xqq.streamlit.app/" target="_blank" class="modal-btn">Abrir App Completa</a>
+            </div>
+        </div>
+    </div>
+
     <footer>
-        <p>© 2025 Jeffersson. Todos los derechos reservados.</p>
+        <p>© 2025 Jeffersson Pretell. Data Scientist & Economist.</p>
     </footer>
-    </html>
+
+    <div id="chatbot-container">
+        <button id="chatbot-toggle"><ion-icon name="chatbubbles-outline"></ion-icon></button>
+        <div id="chatbot-window" class="hidden">
+            <div class="chatbot-header"><span>Jeffersson AI</span><button id="chatbot-close">×</button></div>
+            <div class="iframe-container"><iframe src="about:blank" id="chat-frame"></iframe></div>
+        </div>
+    </div>
+
+    <script src="js/particles.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+</html>

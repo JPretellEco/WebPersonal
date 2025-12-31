@@ -3,64 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JPretellDS - Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Portafolio de Jeffersson Pretell - Economista y Data Scientist. Especialista en Python, R, Big Data y Modelos Económicos.">
+    <title>Jeffersson Pretell | Data Scientist Portfolio</title>
+    
+    <link rel="shortcut icon" href="assets/img/profile_photo.png" type="image/png">
 
-    <!-- Agregamos tsparticles -->
+    <link rel="stylesheet" href="./css/styles.css">
+
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
-
+    
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </head>
+
 <body>
 
-    <!-- Contenedor de partículas -->
     <div id="particles-js"></div>
 
-    <header>
-        <h1>JPretellDS</h1>
+    <header class="main-header">
+        <div class="logo-container">
+            <h1>JPretell<span class="highlight-text">DS</span></h1>
+        </div>
         <nav>
-            <ul>
-                <li><a href="./index.html">INICIO</a></li>
-                <li><a href="./certificaciones.html">CERTIFICADOS</a></li>
-                <li><a href="./project.html">PROYECTOS</a></li>
-                <li><a href="./blog.html">BLOG</a></li>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">INICIO</a></li>
+                <li><a href="certificaciones.html">CERTIFICADOS</a></li>
+                <li><a href="project.html">PROYECTOS</a></li>
+                <li><a href="blog.html">BLOG</a></li>
             </ul>
-            <a href="https://www.linkedin.com/in/jefferssonpretell" target="_blank">
-                <img src='./linkedinlogo 1.png' href="www.linkedin.com/in/jefferssonpretell"></img>
-            </a>
         </nav>
+        <div class="social-header">
+            <a href="https://www.linkedin.com/in/jefferssonpretell" target="_blank" aria-label="LinkedIn">
+                <ion-icon name="logo-linkedin" size="large"></ion-icon>
+            </a>
+        </div>
     </header>    
 
-    <h2>
-        <span class="line1">"Conectar modelos económicos y tecnología no es el futuro</span>
-        <br>
-        <span class="line2">es el presente."</span>
-    </h2>
+    <main>
+        <section class="quote-section">
+            <h2>
+                <span class="line1">"Conectar modelos económicos y tecnología no es el futuro,</span>
+                <br>
+                <span class="line2">es el presente."</span>
+            </h2>
+        </section>
 
-    <section class="hero">
-        <div class="content">
-            <p class="highlight">|| Estudiante de Economía, Computación e Informática || R & Python || Estadística || SQL || Azure || AWS || Power BI || DevOps || MLOps ||</p>
-            <p class="description">📢 Soy un estudiante apasionado de Economía, Matemáticas, Programación y Estadística. Mi objetivo es convertirme en un profesional integral en estas áreas, capaz de analizar y resolver problemas complejos utilizando técnicas avanzadas de análisis de datos y modelado.</p>
-            <h3>Mis herramientas</h3>
-            <div class="image-grid">
-                <img src="./python2.png" alt="Python">
-                <img src="./powerbi 1.png" alt="Power BI">
-                <img src="./SQL.png" alt="SQL">
-                <img src="./mongo.png">
-                <img src="./AWS.png">
-                <img src="./HADOOP.png">
+        <section class="hero">
+            <div class="content">
+                <div class="badges">
+                    <span>Economía & Data Science</span>
+                    <span>Full Stack Analytics</span>
+                </div>
+                
+                <p class="description">
+                    📢 Soy un estudiante apasionado de <strong>Economía, Matemáticas, Programación y Estadística</strong>. 
+                    Mi objetivo es convertirme en un profesional integral, capaz de resolver problemas complejos 
+                    utilizando técnicas avanzadas de análisis de datos y modelado.
+                </p>
+
+                <h3>Mis herramientas</h3>
+                <div class="image-grid">
+                    <img src="assets/icons/python.svg" alt="Python" title="Python">
+                    <img src="assets/icons/r-lang.svg" alt="R" title="R Language">
+                    <img src="assets/icons/sql-server.svg" alt="SQL" title="SQL">
+                    <img src="assets/icons/aws.svg" alt="AWS" title="Amazon Web Services">
+                    <img src="assets/icons/powerbi.svg" alt="Power BI" title="Power BI">
+                    <img src="assets/icons/hadoop.svg" alt="Hadoop" title="Hadoop">
+                </div>
+            </div>
+
+            <div class="profile-pic-container">
+                <img src="assets/img/profile_photo.png" alt="Jeffersson Pretell" class="profile-img">
+                
+                <a href="assets/docs/jeffersson_pretell_cv.pdf" target="_blank" class="btn-cv">
+                    <ion-icon name="download-outline"></ion-icon> DESCARGAR CV
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Jeffersson Pretell. Data Scientist & Economist.</p>
+    </footer>
+
+    <div id="chatbot-container">
+        <button id="chatbot-toggle" aria-label="Abrir Asistente IA">
+            <ion-icon name="chatbubbles-outline"></ion-icon>
+        </button>
+        
+        <div id="chatbot-window" class="hidden">
+            <div class="chatbot-header">
+                <span>Jeffersson AI Assistant</span>
+                <button id="chatbot-close">×</button>
+            </div>
+            <div class="iframe-container">
+                <iframe src="about:blank" id="chat-frame"></iframe>
             </div>
         </div>
-        <div class="profile-pic">
-            <img src="./YOPNG 1.png" alt="Jeffersson Pretell">
-            <a href="#" class="btn">OPEN CV</a>
-        </div>
-    </section>
+    </div>
 
-    <!-- Script para cargar las partículas -->
-    <script src="particles.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/script.js"></script>
 
 </body>
-<footer>
-    <p>© 2025 Jeffersson. Todos los derechos reservados.</p>
-</footer>
 </html>

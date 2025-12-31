@@ -1,68 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certificaciones</title>
-    <link rel="stylesheet" href="styles.css">
-      <!-- Agregamos tsparticles -->
-      <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    <title>Certificaciones | Jeffersson Pretell</title>
+    
+    <link rel="shortcut icon" href="assets/img/profile_photo.png" type="image/png">
+
+    <link rel="stylesheet" href="css/styles.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </head>
+
 <body>
-    <header>
-        <h1>JPretellDS</h1>
+
+    <div id="particles-js"></div>
+
+    <header class="main-header">
+        <div class="logo-container">
+            <h1>JPretell<span class="highlight-text">DS</span></h1>
+        </div>
         <nav>
-            <ul>
-                <li><a href="./index.html">INICIO</a></li>
-                <li><a href="./certificaciones.html">CERTIFICADOS</a></li>
-                <li><a href="./project.html">PROYECTOS</a></li>
-                <li><a href="./blog.html">BLOG</a></li>
+            <ul class="nav-links">
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="certificaciones.html" class="active">CERTIFICADOS</a></li>
+                <li><a href="project.html">PROYECTOS</a></li>
+                <li><a href="blog.html">BLOG</a></li>
             </ul>
-            <a href="https://www.linkedin.com/in/jefferssonpretell" target="_blank">
-                <img src='./linkedinlogo 1.png' href="www.linkedin.com/in/jefferssonpretell"></img>
-            </a>
         </nav>
+        <div class="social-header">
+            <a href="https://www.linkedin.com/in/jefferssonpretell" target="_blank">
+                <ion-icon name="logo-linkedin" size="large"></ion-icon>
+            </a>
+        </div>
     </header>    
-    <main id = "certificados">
-        <div id = "certificados-container">
-            <h2>Certificaciones</h2>
-            <div>
-                Soy un estudiante de economía que si bien muy tarde se enteró del mundo del Business Intelligence, se ha dado cuenta que es una de las áreas que más le gusta. Por eso he decidido aprender y certificarme en las herramientas más importantes del mercado. Tanto, en Fundamentos de Inteligencia Artificial, Bases de datos,Lenguajes modernos de programación, Visualización de datos, Cloud Computing y framewoks ágiles para el trabajo en equipo.
+
+    <main class="page-content">
+        
+        <section class="cert-intro">
+            <h2>Certificaciones y Formación Continua</h2>
+            <div class="intro-text">
+                <p>
+                    Soy un estudiante de economía que descubrió el poder del <strong>Business Intelligence y la Ciencia de Datos</strong>. 
+                    He decidido certificarme en las herramientas más importantes del mercado: Fundamentos de IA, Bases de Datos, 
+                    Cloud Computing y metodologías ágiles.
+                </p>
             </div>
-            <div id="certificados-img">
-                <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+
+            <div class="carousel-container">
+                <button class="carousel-btn prev" id="prevBtn">&#10094;</button>
                 
-                <div class="carousel">
-                    <img src="./aifun.png" alt="Certificado 1">
-                    <img src="./opc.png" alt="Certificado 2">
-                    <img src="./python.png" alt="Certificado 2">
+                <div class="carousel-track-container">
+                    <ul class="carousel-track">
+                        <li class="carousel-slide current-slide">
+                            <img src="assets/img/certificates/aifun.png" alt="Fundamentos AI">
+                        </li>
+                        <li class="carousel-slide">
+                            <img src="assets/img/certificates/opc.png" alt="Open CV">
+                        </li>
+                        <li class="carousel-slide">
+                            <img src="assets/img/certificates/python.png" alt="Python">
+                        </li>
+                    </ul>
                 </div>
                 
-                <button class="next" onclick="moveSlide(1)">&#10095;</button>
+                <button class="carousel-btn next" id="nextBtn">&#10095;</button>
             </div>
-        </div>
+        </section>
 
-        <div class="ENFOQUES">
-            <div class="Economía">
-                <img src="./economía.png" alt="Economía">
-                <p>La combinación de economía y ciencia de datos permite desarrollar modelos de predicción de mercados, optimización de recursos, análisis de riesgo y segmentación de clientes, impactando industrias como banca, retail y consultoría. La capacidad de interpretar datos en contextos macro y microeconómicos diferencia a un economista Data Scientist de otros perfiles más técnicos, ya que puede traducir los resultados en estrategias accionables.</p>
-            </div>
-            <div class="Data Science">
-                <img src="./DATA SCIENCE.png" alt="Data Science">
-                <p> Con la integración de la inteligencia artificial, podré desarrollar simulaciones económicas más realistas, evaluar impactos de políticas en tiempo real y generar soluciones basadas en datos empíricos en lugar de suposiciones teóricas. A medida que las empresas y gobiernos dependen más de la analítica avanzada, mi perfil como economista con habilidades en Data Science será altamente demandado, ya que podré transformar datos complejos en información accionable.</p>
-            </div>
-            <div class="Big Data">
-                <img src="./big data.png" alt="Big Data">
-                <p>El Big Data complementará mis análisis en economía y Data Science al proporcionarme acceso a volúmenes masivos de datos estructurados y no estructurados, lo que me permitirá extraer conocimientos más profundos y precisos sobre tendencias económicas, patrones de consumo y comportamiento del mercado. Con herramientas avanzadas de análisis y procesamiento, podré identificar correlaciones ocultas, detectar anomalías y generar modelos predictivos más robustos para la toma de decisiones estratégicas.</p>
-            </div>
+        <section class="focus-section">
+            <h2 class="section-title">Mi Enfoque Multidisciplinario</h2>
+            
+            <div class="focus-grid">
+                <div class="focus-card">
+                    <div class="card-icon">
+                        <img src="assets/icons/economía.png" alt="Economía">
+                    </div>
+                    <h3>Economía</h3>
+                    <p>La combinación de economía y ciencia de datos permite desarrollar modelos de predicción de mercados y optimización de recursos. Traduzco resultados técnicos en estrategias de negocio accionables.</p>
+                </div>
 
-        </div>
+                <div class="focus-card">
+                    <div class="card-icon">
+                        <img src="assets/icons/DATA SCIENCE.png" alt="Data Science">
+                    </div>
+                    <h3>Data Science</h3>
+                    <p>Con IA y simulaciones, evalúo impactos de políticas en tiempo real. Transformo datos complejos en soluciones empíricas, superando las suposiciones teóricas tradicionales.</p>
+                </div>
+
+                <div class="focus-card">
+                    <div class="card-icon">
+                        <img src="assets/icons/big data.png" alt="Big Data">
+                    </div>
+                    <h3>Big Data</h3>
+                    <p>El manejo de volúmenes masivos de datos (estructurados y no estructurados) me permite identificar correlaciones ocultas y patrones de consumo para decisiones estratégicas robustas.</p>
+                </div>
+            </div>
+        </section>
 
     </main>
-        <!-- Script para cargar las partículas -->
-        <script src="particles.js"></script>
+
+    <footer>
+        <p>© 2025 Jeffersson Pretell. Data Scientist & Economist.</p>
+    </footer>
+
+    <div id="chatbot-container">
+        <button id="chatbot-toggle" aria-label="Abrir Asistente IA">
+            <ion-icon name="chatbubbles-outline"></ion-icon>
+        </button>
+        <div id="chatbot-window" class="hidden">
+            <div class="chatbot-header">
+                <span>Jeffersson AI Assistant</span>
+                <button id="chatbot-close">×</button>
+            </div>
+            <div class="iframe-container">
+                <iframe src="about:blank" id="chat-frame"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/particles.js"></script>
+    <script src="js/script.js"></script>
+
 </body>
-<footer>
-    <p>© 2025 Jeffersson. Todos los derechos reservados.</p>
-</footer>
 </html>
