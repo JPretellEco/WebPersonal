@@ -793,3 +793,90 @@ footer {
     .media-grid { grid-template-columns: 1fr; }
     .blog-post { padding: 1.5rem; }
 }
+
+
+/* ESTILOS INTERNOS DEL CHAT (Sin Iframe) */
+
+/* Área de mensajes con scroll */
+#chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Estilo Base de Mensajes */
+.message {
+    max-width: 85%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+/* Mensaje del Bot */
+.bot-message {
+    background-color: var(--card-bg); /* Gris oscuro */
+    color: var(--text-main);
+    align-self: flex-start;
+    border-bottom-left-radius: 2px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Mensaje del Usuario */
+.user-message {
+    background-color: var(--primary); /* Azul Cyan */
+    color: #0f172a; /* Texto oscuro para contraste */
+    align-self: flex-end;
+    border-bottom-right-radius: 2px;
+    font-weight: 500;
+}
+
+/* Input Area */
+#chat-form {
+    display: flex;
+    padding: 10px;
+    background: var(--card-bg);
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+#chat-input {
+    flex: 1;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 8px 15px;
+    color: white;
+    outline: none;
+    font-family: inherit;
+}
+
+#chat-input:focus {
+    border-color: var(--primary);
+}
+
+#send-btn {
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-size: 1.2rem;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#send-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Animación de "Escribiendo..." */
+.typing-indicator {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    padding: 5px 15px;
+}

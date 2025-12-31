@@ -72,9 +72,9 @@
             </div>
 
             <div class="profile-pic-container">
-                <img src="assets/img/profile_photo.png" alt="Jeffersson Pretell" class="profile-img">
+                <img src="assets/img/123.png" alt="Jeffersson Pretell" class="profile-img">
                 
-                <a href="assets/docs/jeffersson_pretell_cv.pdf" target="_blank" class="btn-cv">
+                <a href="assets/docs/CV_PRETELL_OFICIAL (1).pdf" target="_blank" class="btn-cv">
                     <ion-icon name="download-outline"></ion-icon> DESCARGAR CV
                 </a>
             </div>
@@ -92,15 +92,27 @@
         
         <div id="chatbot-window" class="hidden">
             <div class="chatbot-header">
-                <span>Jeffersson AI Assistant</span>
+                <div class="header-info">
+                    <span>Jeffersson AI</span>
+                    <span class="status-indicator"></span>
+                </div>
                 <button id="chatbot-close">×</button>
             </div>
-            <div class="iframe-container">
-                <iframe src="about:blank" id="chat-frame"></iframe>
+            
+            <div id="chat-messages">
+                <div class="message bot-message">
+                    Hola, soy el asistente virtual de Jeffersson. Pregúntame sobre su experiencia en Data Science o Economía.
+                </div>
             </div>
+
+            <form id="chat-form">
+                <input type="text" id="chat-input" placeholder="Escribe tu pregunta..." autocomplete="off">
+                <button type="submit" id="send-btn">
+                    <ion-icon name="send"></ion-icon>
+                </button>
+            </form>
         </div>
     </div>
-
     <script src="js/particles.js"></script>
     <script src="js/script.js"></script>
 
