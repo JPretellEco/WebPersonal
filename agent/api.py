@@ -13,8 +13,8 @@ from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 
 # --- 1. CONFIGURACIÓN DEL TOKEN (TU CLAVE) ---
-# He puesto tu token aquí directamente para que funcione YA.
-os.environ["HUGGINGFACEHUB_API_TOKEN"] = # LA API KEY DE HG
+huggingfacehub_api_token=os.environ["HUGGINGFACEHUB_API_TOKEN"]
+
 
 # --- 2. INFORMACIÓN DE TU PERFIL ---
 INFO_JEFFERSSON = """
