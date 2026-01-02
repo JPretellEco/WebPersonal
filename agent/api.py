@@ -14,7 +14,7 @@ from langchain_core.output_parsers import StrOutputParser
 
 # --- 1. CONFIGURACIÓN DEL TOKEN (TU CLAVE) ---
 # He puesto tu token aquí directamente para que funcione YA.
-os.environ["HUGGINGFACEHUB_API_TOKEN"] = "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"
+os.environ["HUGGINGFACEHUB_API_TOKEN"] = # LA API KEY DE HG
 
 # --- 2. INFORMACIÓN DE TU PERFIL ---
 INFO_JEFFERSSON = """
