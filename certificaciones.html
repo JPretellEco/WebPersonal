@@ -24,18 +24,22 @@
         </div>
         <nav>
             <ul class="nav-links">
-                <li><a href="index.html">INICIO</a></li>
-                <li><a href="certificaciones.html" class="active">CERTIFICADOS</a></li>
+                <li><a href="index.html" class="active">INICIO</a></li>
+                <li><a href="certificaciones.html">CERTIFICADOS</a></li>
                 <li><a href="project.html">PROYECTOS</a></li>
                 <li><a href="blog.html">BLOG</a></li>
             </ul>
         </nav>
         <div class="social-header">
-            <a href="https://www.linkedin.com/in/jefferssonpretell" target="_blank">
+            <a href="https://www.linkedin.com/in/jefferssonpretell" target="_blank" aria-label="LinkedIn">
                 <ion-icon name="logo-linkedin" size="large"></ion-icon>
             </a>
+            
+            <a href="https://github.com/JPretellEco" target="_blank" aria-label="GitHub" style="margin-left: 15px;">
+                 <ion-icon name="logo-github" size="large"></ion-icon>
+            </a>
         </div>
-    </header>    
+    </header>   
 
     <main class="page-content">
         
@@ -55,13 +59,34 @@
                 <div class="carousel-track-container">
                     <ul class="carousel-track">
                         <li class="carousel-slide current-slide">
-                            <img src="assets/img/aifun.png" alt="Fundamentos AI">
+                            <img src="assets/img/AI_FUNDAMENTAL.png" alt="Fundamentos AI">
                         </li>
                         <li class="carousel-slide">
-                            <img src="assets/img/opc.png" alt="Open CV">
+                            <img src="assets/img/opencv.jpeg" alt="Open CV">
                         </li>
                         <li class="carousel-slide">
-                            <img src="assets/img/python.png" alt="Python">
+                            <img src="assets/img/Python.png" alt="Python">
+                        </li>
+                        <li class="carousel-slide">
+                            <img src="assets/img/1765524531913.jpg" alt="Databricks">
+                        </li>
+                        <li class="carousel-slide">
+                            <img src="assets/img/pbi.png" alt="pbi">
+                        </li>
+                        <li class="carousel-slide">
+                            <img src="assets/img/aws.jpg" alt="AI_aws">
+                        </li>
+                        <li class="carousel-slide">
+                            <img src="assets/img/DE.png" alt="de">
+                        </li>
+                        <li class="carousel-slide">
+                            <img src="assets/img/mongo.png" alt="mongo">
+                        </li>
+                        <li class="carousel-slide">
+                            <img src="assets/img/asd2.png" alt="sql">
+                        </li>
+                        <li class="carousel-slide">
+                            <img src="assets/img/AI_SCIENTIST.png" alt="AI_SCIENTIST">
                         </li>
                     </ul>
                 </div>
@@ -76,7 +101,7 @@
             <div class="focus-grid">
                 <div class="focus-card">
                     <div class="card-icon">
-                        <img src="assets/icons/economía.png" alt="Economía">
+                        <img src="assets/img/economia_mundial.png" alt="Economía">
                     </div>
                     <h3>Economía</h3>
                     <p>La combinación de economía y ciencia de datos permite desarrollar modelos de predicción de mercados y optimización de recursos. Traduzco resultados técnicos en estrategias de negocio accionables.</p>
@@ -84,7 +109,7 @@
 
                 <div class="focus-card">
                     <div class="card-icon">
-                        <img src="assets/icons/DATA SCIENCE.png" alt="Data Science">
+                        <img src="assets/img/PNG.jpg" alt="Data Science">
                     </div>
                     <h3>Data Science</h3>
                     <p>Con IA y simulaciones, evalúo impactos de políticas en tiempo real. Transformo datos complejos en soluciones empíricas, superando las suposiciones teóricas tradicionales.</p>
@@ -92,7 +117,7 @@
 
                 <div class="focus-card">
                     <div class="card-icon">
-                        <img src="assets/icons/big data.png" alt="Big Data">
+                        <img src="assets/img/BigData.jpg" alt="Big Data">
                     </div>
                     <h3>Big Data</h3>
                     <p>El manejo de volúmenes masivos de datos (estructurados y no estructurados) me permite identificar correlaciones ocultas y patrones de consumo para decisiones estratégicas robustas.</p>
@@ -110,14 +135,28 @@
         <button id="chatbot-toggle" aria-label="Abrir Asistente IA">
             <ion-icon name="chatbubbles-outline"></ion-icon>
         </button>
+        
         <div id="chatbot-window" class="hidden">
             <div class="chatbot-header">
-                <span>Jeffersson AI Assistant</span>
+                <div class="header-info">
+                    <span>Jeffersson AI</span>
+                    <span class="status-indicator"></span>
+                </div>
                 <button id="chatbot-close">×</button>
             </div>
-            <div class="iframe-container">
-                <iframe src="about:blank" id="chat-frame"></iframe>
+            
+            <div id="chat-messages">
+                <div class="message bot-message">
+                    Hola, soy el asistente virtual de Jeffersson. Pregúntame sobre su experiencia en Data Science o Economía.
+                </div>
             </div>
+
+            <form id="chat-form">
+                <input type="text" id="chat-input" placeholder="Escribe tu pregunta..." autocomplete="off">
+                <button type="submit" id="send-btn">
+                    <ion-icon name="send"></ion-icon>
+                </button>
+            </form>
         </div>
     </div>
 

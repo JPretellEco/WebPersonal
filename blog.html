@@ -24,18 +24,22 @@
         </div>
         <nav>
             <ul class="nav-links">
-                <li><a href="index.html">INICIO</a></li>
+                <li><a href="index.html" class="active">INICIO</a></li>
                 <li><a href="certificaciones.html">CERTIFICADOS</a></li>
                 <li><a href="project.html">PROYECTOS</a></li>
-                <li><a href="blog.html" class="active">BLOG</a></li>
+                <li><a href="blog.html">BLOG</a></li>
             </ul>
         </nav>
         <div class="social-header">
-            <a href="https://www.linkedin.com/in/jefferssonpretell" target="_blank">
+            <a href="https://www.linkedin.com/in/jefferssonpretell" target="_blank" aria-label="LinkedIn">
                 <ion-icon name="logo-linkedin" size="large"></ion-icon>
             </a>
+            
+            <a href="https://github.com/JPretellEco" target="_blank" aria-label="GitHub" style="margin-left: 15px;">
+                 <ion-icon name="logo-github" size="large"></ion-icon>
+            </a>
         </div>
-    </header>     
+    </header>    
 
     <main class="page-content blog-container">
         
@@ -77,7 +81,7 @@
             <p>Hal R. Varian (Economista Jefe de Google) aconsejó: <em>"Vaya al departamento de informática y tome una clase de aprendizaje automático"</em>. No se trata de abandonar la teoría, sino de aprovechar la granularidad del Big Data.</p>
             
             <div class="post-image-full">
-                <img src="assets/img/blog/eco.png" alt="Economía y Datos">
+                <img src="assets/img/eco.png" alt="Economía y Datos">
                 <a href="https://lnkd.in/eiS5VfMq" target="_blank" class="download-link"><ion-icon name="document-text-outline"></ion-icon> Leer Paper de Hal Varian</a>
             </div>
         </article>
@@ -91,9 +95,9 @@
             <p>En 2024 inicié mi camino en R Studio fomentando un club de lectura. Motivamos a muchos profesionales a compartir conocimientos técnicos.</p>
             
             <div class="gallery-grid">
-                <img src="assets/img/blog/juan.png" alt="Reunión Club">
-                <img src="assets/img/blog/club.png" alt="Miembros del club">
-                <img src="assets/img/blog/git para R.png" alt="Git y R">
+                <img src="assets/img/club.png" alt="Reunión Club">
+                <img src="assets/img/git para R.png" alt="Miembros del club">
+
             </div>
             
             <div class="repo-box">
@@ -129,10 +133,31 @@
     </footer>
 
     <div id="chatbot-container">
-        <button id="chatbot-toggle"><ion-icon name="chatbubbles-outline"></ion-icon></button>
+        <button id="chatbot-toggle" aria-label="Abrir Asistente IA">
+            <ion-icon name="chatbubbles-outline"></ion-icon>
+        </button>
+        
         <div id="chatbot-window" class="hidden">
-            <div class="chatbot-header"><span>Jeffersson AI</span><button id="chatbot-close">×</button></div>
-            <div class="iframe-container"><iframe src="about:blank" id="chat-frame"></iframe></div>
+            <div class="chatbot-header">
+                <div class="header-info">
+                    <span>Jeffersson AI</span>
+                    <span class="status-indicator"></span>
+                </div>
+                <button id="chatbot-close">×</button>
+            </div>
+            
+            <div id="chat-messages">
+                <div class="message bot-message">
+                    Hola, soy el asistente virtual de Jeffersson. Pregúntame sobre su experiencia en Data Science o Economía.
+                </div>
+            </div>
+
+            <form id="chat-form">
+                <input type="text" id="chat-input" placeholder="Escribe tu pregunta..." autocomplete="off">
+                <button type="submit" id="send-btn">
+                    <ion-icon name="send"></ion-icon>
+                </button>
+            </form>
         </div>
     </div>
 

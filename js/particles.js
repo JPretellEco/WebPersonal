@@ -162,6 +162,86 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     }
+    /* =========================================
+       EFECTO MÁQUINA DE ESCRIBIR (QUOTE)
+       ========================================= */
+    
+    const line1 = document.querySelector('.quote-section .line1');
+    const line2 = document.querySelector('.quote-section .line2');
+
+    // Función genérica para escribir texto
+    function typeWriter(element, text, speed, callback) {
+        let i = 0;
+        element.innerHTML = ""; // Limpiar texto inicial
+        element.classList.add('typing'); // Añadir cursor
+
+        function type() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            } else {
+                element.classList.remove('typing'); // Quitar cursor al terminar
+                if (callback) callback(); // Ejecutar siguiente acción
+            }
+        }
+        type();
+    }
+
+    // Ejecutar solo si existen los elementos
+    if (line1 && line2) {
+        const text1 = line1.innerText; // "Conectar modelos..."
+        const text2 = line2.innerText; // "es el presente."
+
+        // Borramos el contenido inicial para que no se vea duplicado al cargar
+        line1.innerHTML = "&nbsp;"; // Espacio para mantener altura
+        line2.innerHTML = "&nbsp;";
+
+        // Iniciamos la secuencia (Velocidad: 40ms por letra)
+        // Pequeño delay de 500ms al inicio para que se note el efecto
+        setTimeout(() => {
+            line1.innerHTML = ""; // Limpiar el espacio
+            typeWriter(line1, text1, 80, () => {
+                // Callback: Cuando termina la línea 1, empieza la 2
+                line2.innerHTML = ""; // Limpiar el espacio
+                typeWriter(line2, text2, 40);
+            });
+        }, 500);
+    }
+    /* =========================================
+       FILTRO DE PROYECTOS
+       ========================================= */
+    const filterItems = document.querySelectorAll('.filter-item');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    if (filterItems.length > 0) {
+        filterItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // 1. Quitar clase active de todos
+                filterItems.forEach(fi => fi.classList.remove('active'));
+                
+                // 2. Activar el clicado
+                item.classList.add('active');
+
+                // 3. Obtener valor del filtro
+                const filterValue = item.getAttribute('data-filter');
+
+                // 4. Mostrar/Ocultar tarjetas
+                projectCards.forEach(card => {
+                    const categories = card.getAttribute('data-category');
+                    
+                    if (filterValue === 'all' || categories.includes(filterValue)) {
+                        card.classList.remove('hidden');
+                        // Pequeña animación de entrada
+                        card.style.opacity = '0';
+                        setTimeout(() => card.style.opacity = '1', 50);
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    }
 });
 
 /* =========================================

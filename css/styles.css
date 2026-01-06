@@ -81,14 +81,23 @@ ul { list-style: none; }
 /* =========================================
    3. HERO SECTION
    ========================================= */
+/* 1. Ajustamos el MAIN para que tenga un límite de ancho y se centre en pantallas gigantes */
 main {
     margin-top: var(--nav-height);
     padding: 2rem 5%;
+    /* NUEVO: Esto evita que el contenido se estire demasiado en pantallas 4K o muy anchas */
+    max-width: 1200px; 
+    margin-left: auto; 
+    margin-right: auto;
 }
 
+/* 2. Centramos la cita para que no sea una línea eterna de texto */
 .quote-section {
     text-align: center;
     padding: 4rem 0;
+    /* NUEVO: Centra el bloque de la cita */
+    max-width: 800px;
+    margin: 0 auto; 
 }
 
 .quote-section h2 {
@@ -104,23 +113,26 @@ main {
     font-weight: 700;
 }
 
+/* 3. Ajustamos el HERO para agrupar la info y la foto en el centro */
 .hero {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 4rem;
+    /* CAMBIO: Usamos 'center' en lugar de 'space-between' para traerlos al medio */
+    justify-content: center; 
+    gap: 5rem; /* Aumenté un poco el gap para que no se vean pegados, pero sí centrados */
     min-height: 60vh;
 }
 
 .content {
     flex: 1;
-    max-width: 600px;
+    max-width: 550px; /* Reduje un poco el ancho para balancear con la foto */
 }
 
 .badges {
     display: flex;
     gap: 10px;
     margin-bottom: 1.5rem;
+    /* Opcional: Si quieres que los badges también se centren respecto al texto, añade: justify-content: center; */
 }
 
 .badges span {
@@ -139,29 +151,50 @@ main {
     font-size: 1rem;
 }
 
-/* Icon Grid */
+/* =========================================
+   GRID DE HERRAMIENTAS (ICONOS)
+   ========================================= */
+
 .image-grid {
     display: flex;
-    gap: 20px;
+    gap: 40px; /* Aumentado de 20px a 40px para más aire */
     flex-wrap: wrap;
+    margin-top: 25px; /* Separación del título H3 */
+    justify-content: center; /* Alineación centrada (ideal si el hero está centrado) */
+    align-items: center; /* Alinea verticalmente si los iconos tienen alturas distintas */
 }
 
 .image-grid img {
-    height: 40px;
-    transition: transform 0.3s;
-    filter: grayscale(100%); /* Efecto elegante: B/N por defecto */
-    opacity: 0.7;
+    height: 65px; /* Aumentado de 40px a 65px (Mucho más visible) */
+    width: auto;  /* Mantiene la proporción */
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote suave */
+    filter: grayscale(100%); 
+    opacity: 0.6;
+    cursor: pointer;
 }
 
+/* Efecto Hover: Color y ligero crecimiento */
 .image-grid img:hover {
-    filter: grayscale(0%); /* Color al pasar el mouse */
-    transform: scale(1.1);
+    filter: grayscale(0%);
     opacity: 1;
+    transform: scale(1.15) translateY(-5px); /* Crece y sube un poco */
+}
+
+/* Ajuste Responsivo para Móviles */
+@media (max-width: 768px) {
+    .image-grid {
+        gap: 25px; /* Menos espacio en celular */
+    }
+    
+    .image-grid img {
+        height: 50px; /* Un poco más pequeños en celular para que quepan bien */
+    }
 }
 
 /* Profile Pic */
 .profile-pic-container {
-    flex: 1;
+    /* Quitamos el flex: 1 para que no empuje innecesariamente si usamos justify-content: center */
+    flex: 0 0 auto; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -194,6 +227,26 @@ main {
     box-shadow: 0 6px 20px rgba(56, 189, 248, 0.6);
 }
 
+/* RESPONSIVE: IMPORTANTE PARA CELULARES */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column-reverse; /* Foto arriba, texto abajo en celular */
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .badges {
+        justify-content: center;
+    }
+
+    .image-grid {
+        justify-content: center;
+    }
+    
+    .content {
+        max-width: 100%;
+    }
+}
 /* =========================================
    4. CHATBOT WIDGET (IMPORTANTE)
    ========================================= */
@@ -879,4 +932,330 @@ footer {
     color: var(--text-muted);
     font-size: 0.8rem;
     padding: 5px 15px;
+}
+
+/* =========================================
+   LÍNEA DE TIEMPO (TIMELINE) - ESTILO DATA SCIENTIST
+   ========================================= */
+
+/* Contenedor de la lista */
+.timeline-list {
+    position: relative;
+    padding-left: 30px; /* Espacio para la línea */
+    margin-top: 30px;
+    border-left: 2px solid #383838; /* La línea vertical gris oscura */
+}
+
+/* Cada item de la lista */
+.timeline-item {
+    position: relative;
+    margin-bottom: 40px; /* Espacio entre items */
+    padding-left: 20px; /* Separación del texto de la línea */
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+/* El Punto (Dot) sobre la línea */
+.timeline-dot {
+    position: absolute;
+    left: -36px; /* Ajuste preciso para centrar en la línea vertical */
+    top: 5px;
+    width: 14px;
+    height: 14px;
+    background: #121212; /* Fondo negro para que no se vea la línea debajo */
+    border: 2px solid #00FFFF; /* Color CIAN (Neon) acorde a tu estilo */
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.4); /* Brillo CIAN */
+    z-index: 1;
+}
+
+/* Título de la institución/curso */
+.timeline-item-title {
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+/* Fechas */
+.timeline-date {
+    display: inline-block;
+    background: rgba(30, 144, 255, 0.15); /* Fondo azul suave */
+    color: #1E90FF; /* Azul DodgerBlue (tu color de énfasis) */
+    font-size: 0.85rem;
+    padding: 3px 10px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+/* Texto descriptivo */
+.timeline-text {
+    color: #d1d5db; /* Gris claro para lectura */
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Efecto Hover: Al pasar el mouse, el punto brilla más */
+.timeline-item:hover .timeline-dot {
+    background: #00FFFF;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+    transition: 0.3s ease;
+}
+
+/* =========================================
+   LAYOUT DE ESTUDIOS (GRID 2 COLUMNAS)
+   ========================================= */
+
+/* Contenedor principal que activa el Grid */
+.timeline-grid-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Por defecto (móvil): una sola columna */
+    gap: 40px;
+    margin-top: 30px;
+}
+
+/* Estilos para la columna derecha (Imagen) */
+.timeline-right {
+    display: flex;
+    flex-direction: column;
+}
+
+/* El contenedor de la imagen */
+.university-banner {
+    position: relative;
+    border-radius: 16px; /* Bordes redondeados modernos */
+    overflow: hidden;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5); /* Sombra profunda */
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Borde sutil */
+    
+    /* EFECTO "STICKY": Hace que la imagen te siga mientras bajas la línea de tiempo */
+    position: sticky;
+    top: 100px; /* Ajusta esto si tu menú superior tapa la imagen */
+}
+
+/* La imagen en sí */
+.university-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen cubra el espacio sin deformarse */
+    min-height: 400px; /* Altura mínima para que se vea imponente */
+    display: block;
+    transition: transform 0.5s ease;
+    filter: brightness(0.8) contrast(1.1); /* Un poco más oscura y contrastada para el tema dark */
+}
+
+/* Efecto hover sutil */
+.university-banner:hover img {
+    transform: scale(1.03);
+    filter: brightness(1);
+}
+
+/* Pie de foto (opcional) */
+.university-banner figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: #fff;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+
+/* =========================================
+   MEDIA QUERIES (Adaptación a pantallas grandes)
+   ========================================= */
+
+/* Solo en tablets y PC (pantallas mayores a 768px) se divide en 2 columnas */
+@media (min-width: 768px) {
+    .timeline-grid-container {
+        /* Divide el espacio: 60% para la línea de tiempo, 40% para la imagen */
+        grid-template-columns: 3fr 2fr; 
+        align-items: start; /* Alinea ambos al inicio superior */
+    }
+
+    /* Ajuste para la línea de tiempo cuando está a la izquierda */
+    .timeline-list {
+        margin-top: 0; /* Quita margen superior innecesario en desktop */
+    }
+}
+
+/* =========================================
+   EFECTO DE ESCRITURA (TYPEWRITER)
+   ========================================= */
+
+/* Clase para el cursor parpadeante que añadiremos con JS */
+.typing::after {
+    content: '|';
+    display: inline-block;
+    color: var(--primary); /* Tu azul cyan */
+    animation: blink-caret 0.75s step-end infinite;
+    margin-left: 2px;
+    vertical-align: text-bottom; /* Alineación segura */
+}
+
+/* Animación de parpadeo */
+@keyframes blink-caret {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Opcional: Altura mínima para evitar saltos de layout si carga lento */
+.quote-section h2 {
+    min-height: 3.5rem; 
+}
+
+/* =========================================
+   LAYOUT DE PROYECTOS (SIDEBAR + GRID)
+   ========================================= */
+
+/* Contenedor principal flex para poner sidebar a la izq */
+.project-layout {
+    display: flex;
+    gap: 40px;
+    padding: 2rem 5%;
+    margin-top: var(--nav-height);
+    align-items: flex-start; /* Importante para sticky */
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- ESTILOS DEL SIDEBAR --- */
+.sidebar-filter {
+    width: 250px; /* Ancho fijo del sidebar */
+    flex-shrink: 0; /* No encoger */
+    background: rgba(30, 41, 59, 0.5); /* Fondo semitransparente */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 20px;
+    
+    /* Sticky: Se queda fijo al bajar */
+    position: sticky;
+    top: 100px; 
+}
+
+.filter-title {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary);
+    display: inline-block;
+}
+
+.filter-list {
+    list-style: none;
+    padding: 0;
+}
+
+.filter-item {
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    border-radius: 8px;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+}
+
+.filter-item ion-icon {
+    font-size: 1.2rem;
+}
+
+/* Estados del botón */
+.filter-item:hover {
+    background: rgba(56, 189, 248, 0.1);
+    color: #fff;
+}
+
+.filter-item.active {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    color: #0f172a; /* Texto oscuro para contraste */
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+}
+
+/* Ajuste contenedor de proyectos para que ocupe el resto */
+.projects-container {
+    flex-grow: 1;
+    width: 100%;
+}
+
+/* Animación para filtrar */
+.project-card {
+    transition: all 0.4s ease;
+}
+
+.project-card.hidden {
+    display: none; /* Ocultar tarjetas filtradas */
+}
+
+/* =========================================
+   RESPONSIVE (MÓVIL)
+   ========================================= */
+@media (max-width: 900px) {
+    .project-layout {
+        flex-direction: column; /* Cambiar a columna */
+        gap: 20px;
+    }
+
+    .sidebar-filter {
+        width: 100%; /* Sidebar ocupa todo el ancho */
+        position: relative; /* Ya no sticky */
+        top: 0;
+        overflow-x: auto; /* Scroll horizontal si hay muchos items */
+    }
+
+    .filter-list {
+        display: flex; /* Botones en fila */
+        gap: 10px;
+        padding-bottom: 5px;
+    }
+
+    .filter-item {
+        white-space: nowrap; /* No romper texto */
+        margin-bottom: 0;
+        font-size: 0.9rem;
+    }
+}
+
+/* =========================================
+   STICKY FOOTER FIX (Footer siempre abajo)
+   ========================================= */
+
+body {
+    /* 1. Convertimos el body en una columna flexible */
+    display: flex;
+    flex-direction: column;
+    
+    /* 2. Aseguramos que el body ocupe AL MENOS el 100% de la pantalla */
+    min-height: 100vh;
+    
+    /* Tus estilos anteriores se mantienen... */
+    margin: 0;
+    font-family: 'Poppins', sans-serif; /* (Ejemplo, mantén tu fuente actual) */
+}
+
+main {
+    /* 3. El main crecerá para ocupar todo el espacio vacío disponible */
+    flex: 1;
+    
+    /* Tus estilos anteriores de main se mantienen... */
+    margin-top: var(--nav-height);
+    /* padding, etc... */
+}
+
+footer {
+    /* El footer ya no necesita nada especial, el main lo empujará */
+    margin-top: auto; /* Opcional: asegura empuje extra si hay márgenes */
 }
