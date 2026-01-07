@@ -86,6 +86,16 @@ client = InferenceClient(
     api_key=hf_token
 )
 
+# --- RUTA DE BIENVENIDA (Para evitar el 404) ---
+@app.get("/")
+def home():
+    return {
+        "estado": "ACTIVO",
+        "mensaje": "El cerebro de Jeffersson AI está funcionando correctamente 🤖",
+        "documentacion": "/docs"  # FastAPI crea docs automáticos aquí
+    }
+
+
 @app.post("/chat")
 async def chat_endpoint(request: ChatRequest):
     if not hf_token:
