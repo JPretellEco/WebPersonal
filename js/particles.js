@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const chatMessages = document.getElementById('chat-messages');
 
     // URL de tu Backend FastAPI (Local)
-    const API_URL = "http://127.0.0.1:8000/chat"; 
+    const API_URL = "https://webpersonal-yswz.onrender.com/chat"; 
 
     // --- A. CARGAR ESTADO AL INICIAR (Memoria) ---
     loadChatState();
