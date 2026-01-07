@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     
     /* =========================================
-       1. LÓGICA DEL CHATBOT (FASTAPI / BACKEND)
+       1. LÓGICA DEL CHATBOT (CON MEMORIA / PERSISTENCIA)
        ========================================= */
     const chatToggle = document.getElementById('chatbot-toggle');
     const chatWindow = document.getElementById('chatbot-window');
@@ -11,58 +11,44 @@ document.addEventListener("DOMContentLoaded", () => {
     const chatMessages = document.getElementById('chat-messages');
 
     // URL de tu Backend FastAPI (Local)
-    // NOTA: Cuando subas esto a internet, cambia esta URL por la de producción.
     const API_URL = "http://127.0.0.1:8000/chat"; 
 
-    // A. Abrir/Cerrar Ventana
+    // --- A. CARGAR ESTADO AL INICIAR (Memoria) ---
+    loadChatState();
+
+    // --- B. ABRIR / CERRAR CHAT ---
     if (chatToggle && chatWindow) {
         chatToggle.addEventListener('click', () => {
-            chatWindow.classList.toggle('hidden');
-            // Dar foco al input si se abre
-            if (!chatWindow.classList.contains('hidden') && chatInput) {
-                setTimeout(() => chatInput.focus(), 100);
-            }
+            chatWindow.classList.remove('hidden'); // Forzamos mostrar
+            // Dar foco al input
+            if (chatInput) setTimeout(() => chatInput.focus(), 100);
+            saveChatState(); // Guardamos que está abierto
         });
     }
 
     if (chatClose && chatWindow) {
         chatClose.addEventListener('click', () => {
-            chatWindow.classList.add('hidden');
+            chatWindow.classList.add('hidden'); // Ocultamos
+            saveChatState(); // Guardamos que está cerrado
         });
     }
 
-    // B. Función para agregar mensajes al DOM (HTML)
-    function addMessage(text, sender) {
-        if (!chatMessages) return;
-
-        const div = document.createElement('div');
-        div.classList.add('message');
-        // Define clase según quién envía: 'user-message' o 'bot-message'
-        div.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
-        div.textContent = text;
-        
-        chatMessages.appendChild(div);
-        // Auto-scroll al final
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    // C. Función para enviar mensaje a la API
+    // --- C. PROCESAR EL ENVÍO DE MENSAJES ---
     async function handleChatSubmit(e) {
         e.preventDefault();
         
         if (!chatInput) return;
-        
         const message = chatInput.value.trim();
         if (!message) return;
 
-        // 1. Mostrar mensaje del usuario
-        addMessage(message, 'user');
+        // 1. Mostrar mensaje del usuario y guardar estado
+        addMessageToUI(message, 'user');
         chatInput.value = '';
 
-        // 2. Mostrar indicador "Escribiendo..."
+        // 2. Mostrar indicador "Escribiendo..." (No se guarda en historial)
         const loadingDiv = document.createElement('div');
         loadingDiv.textContent = "Analizando perfil...";
-        loadingDiv.classList.add('typing-indicator'); // Asegúrate de tener este estilo en CSS
+        loadingDiv.classList.add('message', 'bot-message', 'typing-indicator'); 
         chatMessages.appendChild(loadingDiv);
         chatMessages.scrollTop = chatMessages.scrollHeight;
 
@@ -82,20 +68,95 @@ document.addEventListener("DOMContentLoaded", () => {
             if (chatMessages.contains(loadingDiv)) {
                 chatMessages.removeChild(loadingDiv);
             }
-            addMessage(data.response, 'bot');
+            addMessageToUI(data.response, 'bot');
 
         } catch (error) {
             console.error("Error:", error);
             if (chatMessages.contains(loadingDiv)) {
                 chatMessages.removeChild(loadingDiv);
             }
-            addMessage("Lo siento, no puedo conectar con el cerebro del agente en este momento. Asegúrate de que 'api.py' esté ejecutándose.", 'bot');
+            addMessageToUI("Lo siento, no puedo conectar con el cerebro del agente en este momento. Asegúrate de que 'agente.py' esté ejecutándose.", 'bot');
         }
     }
 
     // Listener del formulario
     if (chatForm) {
         chatForm.addEventListener('submit', handleChatSubmit);
+    }
+
+    // --- D. FUNCIONES DE UTILIDAD Y MEMORIA ---
+
+    // Agrega mensaje al HTML y guarda en SessionStorage
+    function addMessageToUI(text, sender) {
+        if (!chatMessages) return;
+
+        const div = document.createElement('div');
+        div.classList.add('message');
+        div.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
+        div.textContent = text;
+        
+        chatMessages.appendChild(div);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        // ¡IMPORTANTE! Guardar cada vez que se añade un mensaje válido
+        saveChatState();
+    }
+
+    function saveChatState() {
+        if (!chatWindow) return;
+
+        // 1. Guardar si está visible o no
+        const isOpen = !chatWindow.classList.contains('hidden');
+        sessionStorage.setItem('chat_isOpen', isOpen);
+
+        // 2. Guardar el historial de mensajes
+        const messages = [];
+        // Seleccionamos solo los mensajes reales (ignorando el 'typing-indicator')
+        // Usamos querySelectorAll dentro de chatMessages para obtener el orden correcto
+        const messageElements = chatMessages.querySelectorAll('.message:not(.typing-indicator)');
+        
+        messageElements.forEach(msg => {
+            const isUser = msg.classList.contains('user-message');
+            messages.push({
+                text: msg.textContent,
+                sender: isUser ? 'user' : 'bot'
+            });
+        });
+        sessionStorage.setItem('chat_history', JSON.stringify(messages));
+    }
+
+    function loadChatState() {
+        if (!chatWindow) return;
+
+        // 1. Recuperar estado Abierto/Cerrado
+        const isOpen = sessionStorage.getItem('chat_isOpen') === 'true';
+        if (isOpen) {
+            chatWindow.classList.remove('hidden');
+        } else {
+            chatWindow.classList.add('hidden');
+        }
+
+        // 2. Recuperar Historial
+        const historyData = sessionStorage.getItem('chat_history');
+        if (historyData) {
+            const history = JSON.parse(historyData);
+            
+            // Solo restauramos si hay historial previo
+            if (history.length > 0) {
+                chatMessages.innerHTML = ''; // Limpiamos mensaje por defecto si hay historial
+                history.forEach(msg => {
+                    const div = document.createElement('div');
+                    div.classList.add('message');
+                    div.classList.add(msg.sender === 'user' ? 'user-message' : 'bot-message');
+                    div.textContent = msg.text;
+                    chatMessages.appendChild(div);
+                });
+                // Scroll al final al cargar
+                setTimeout(() => {
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 100);
+            }
+        }
     }
 
 
@@ -162,6 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     }
+
     /* =========================================
        EFECTO MÁQUINA DE ESCRIBIR (QUOTE)
        ========================================= */
@@ -190,24 +252,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Ejecutar solo si existen los elementos
     if (line1 && line2) {
-        const text1 = line1.innerText; // "Conectar modelos..."
-        const text2 = line2.innerText; // "es el presente."
+        const text1 = line1.innerText; 
+        const text2 = line2.innerText; 
 
         // Borramos el contenido inicial para que no se vea duplicado al cargar
-        line1.innerHTML = "&nbsp;"; // Espacio para mantener altura
+        line1.innerHTML = "&nbsp;"; 
         line2.innerHTML = "&nbsp;";
 
         // Iniciamos la secuencia (Velocidad: 40ms por letra)
-        // Pequeño delay de 500ms al inicio para que se note el efecto
         setTimeout(() => {
-            line1.innerHTML = ""; // Limpiar el espacio
+            line1.innerHTML = ""; 
             typeWriter(line1, text1, 80, () => {
                 // Callback: Cuando termina la línea 1, empieza la 2
-                line2.innerHTML = ""; // Limpiar el espacio
+                line2.innerHTML = ""; 
                 typeWriter(line2, text2, 40);
             });
         }, 500);
     }
+
     /* =========================================
        FILTRO DE PROYECTOS
        ========================================= */
